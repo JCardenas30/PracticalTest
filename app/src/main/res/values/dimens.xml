@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- general -->
+    <dimen name="toolbar_elevation">6dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="no_dp">0dp</dimen>
+
+    <!-- splash -->
+    <dimen name="splash_image_height">0.2</dimen>
+    <dimen name="splash_image_width">0.5</dimen>
+
+    <!-- login -->
+    <dimen name="login_guide_middle_vertical">0.5</dimen>
+    <dimen name="login_header_image_height">0.1</dimen>
+    <dimen name="login_header_image_width">0.5</dimen>
+
+</resources>

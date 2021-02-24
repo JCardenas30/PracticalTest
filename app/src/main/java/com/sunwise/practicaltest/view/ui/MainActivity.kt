@@ -1,7 +1,8 @@
-package com.sunwise.practicaltest
+package com.sunwise.practicaltest.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sunwise.practicaltest.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
