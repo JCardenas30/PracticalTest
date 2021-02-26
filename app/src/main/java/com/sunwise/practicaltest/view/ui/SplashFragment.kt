@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -34,18 +35,33 @@ class SplashFragment: BaseFragment() {
     override fun onViewFragmentCreated(view: View, savedInstanceState: Bundle?) {
         fullScreen()
         _navController = Navigation.findNavController(view)
-        startTimer()
+        loadData()
     }
 
-    private fun startTimer() {
+    private fun loadData(){
+        _viewModel.test {
+            _viewModel.active { isLoggedIn ->
+                val action = if(isLoggedIn)
+                                R.id.action_splashFragment_to_mainFragment
+                            else
+                                R.id.action_splashFragment_to_loginFragment
+                goTo(action)
+            }
+        }
+    }
+
+    private fun goTo(action: Int) {
         object: Thread() {
             override fun run() {
                 try {
-                    sleep(2500)
+                    sleep(500)
                 } catch (e: Exception) {
                     Log.e(TAG, "Something went wrong.")
                 } finally {
-                    _navController?.navigate(R.id.action_splashFragment_to_loginFragment)
+                    val args = if(action == R.id.action_splashFragment_to_mainFragment)
+                        bundleOf(BaseFragment.HAS_TOOLBAR_KEY to true)
+                    else Bundle.EMPTY
+                    _navController?.navigate(action, args)
                 }
             }
         }.start()

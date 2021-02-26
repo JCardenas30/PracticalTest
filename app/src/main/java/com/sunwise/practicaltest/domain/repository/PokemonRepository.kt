@@ -14,28 +14,12 @@ class PokemonRepository(): BaseRepository() {
     private val api: PokemonApi by lazy { PokemonApi() }
     private val dao: PokemonDao by lazy { database.pokemonDao() }
 
-    fun getPokemon(result: (list: List<Pokemon>) -> Unit){
-        runBlocking {
-            if(existLocalPokemon())
-                result(getLocalPokemon())
-            else {
-                getRemotePokemon { res ->
-                    runBlocking {
-                        saveCache(res)
-                        result(res)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun getRemotePokemon(result: (list: List<Pokemon>) -> Unit){
+    fun getRemotePokemon(result: (list: List<Pokemon>) -> Unit){
         api.pokemon()
                 .subscribeOn(Schedulers.single())
                 .observeOn(Schedulers.computation())
                 .subscribeWith(object: DisposableSingleObserver<PokemonResponseEntity>(){
                     override fun onSuccess(value: PokemonResponseEntity?) {
-
                         result(mapper.map(value))
                     }
 
@@ -46,15 +30,15 @@ class PokemonRepository(): BaseRepository() {
                 })
     }
 
-    private suspend fun saveCache(list: List<Pokemon>){
+    suspend fun saveLocal(list: List<Pokemon>){
         dao.insert(list)
     }
 
-    private suspend fun getLocalPokemon(): List<Pokemon>{
+    suspend fun getLocalPokemon(): List<Pokemon>{
         return dao.all()
     }
 
-    private suspend fun existLocalPokemon(): Boolean{
+    suspend fun existLocalPokemon(): Boolean{
         return dao.exist() > 0
     }
 }

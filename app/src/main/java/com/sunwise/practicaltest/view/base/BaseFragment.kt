@@ -53,7 +53,7 @@ abstract class BaseFragment: Fragment() {
         val toolbarView = LayoutInflater.from(context).inflate(resIdToolbar, null, false)
         val toolbar = toolbarView.findViewById<Toolbar>(idToolbar)
         toolbar?.let {
-            toolbarView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            //toolbarView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             (_parentView as LinearLayout).addView(toolbarView, 0)
             _parentActivity?.setSupportActionBar(it)
             setHasOptionsMenu(true)

@@ -5,7 +5,17 @@
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
     <string name="login_btn_login">Log in</string>
+    <string name="login_error_bad_credentials_title">Authentication failed</string>
+    <string name="login_error_bad_credentials_message">The credentials you entered are incorrect</string>
+    <string name="login_ok">OK</string>
+
 
     <!-- main -->
     <string name="main_toolbar_title">Pokemon</string>
+    <string name="main_load_pokemon_error">An error occurred,\nplease click here to retry.</string>
+    <string name="main_logout">Log out</string>
+    <string name="main_logout_title_dialog">Are you sure you want to log out?</string>
+    <string name="main_logout_msg_dialog">You will have to enter your access data again</string>
+    <string name="main_logout_yes_dialog">Yes</string>
+    <string name="main_logout_no_dialog">No</string>
 </resources>

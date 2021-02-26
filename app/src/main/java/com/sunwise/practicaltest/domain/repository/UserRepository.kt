@@ -13,6 +13,26 @@ class UserRepository: BaseRepository() {
         }
     }
 
+    fun login(user: User, result: (user: User?) -> Unit) {
+        runBlocking {
+            result(dao.login(user.email, user.password))
+        }
+    }
+
+    fun update(user: User, ok: () -> Unit){
+        runBlocking {
+            dao.update(user)
+            ok()
+        }
+    }
+
+    fun logout(ok: () -> Unit){
+        runBlocking {
+            dao.logout()
+            ok()
+        }
+    }
+
     fun test(result: () -> Unit){
         val users = mutableListOf<User>()
         for(i in 0..4){
