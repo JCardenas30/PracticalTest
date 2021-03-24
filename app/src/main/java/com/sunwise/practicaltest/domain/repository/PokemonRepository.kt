@@ -41,4 +41,6 @@ class PokemonRepository(): BaseRepository() {
     suspend fun existLocalPokemon(): Boolean{
         return dao.exist() > 0
     }
+
+    suspend fun remove(item: Pokemon) = dao.remove(item)
 }

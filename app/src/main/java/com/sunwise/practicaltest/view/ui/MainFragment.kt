@@ -3,7 +3,6 @@ package com.sunwise.practicaltest.view.ui
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,7 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 class MainFragment: BaseFragment() {
     private val _viewModel: MainViewModel by lazy {
@@ -48,6 +46,10 @@ class MainFragment: BaseFragment() {
         setListeners()
         rvPokemons.adapter = pokemonAdapter
         loadPokemonData()
+
+        _viewModel.getSession { user ->
+            user?.let { setTitle(user.email) }
+        }
     }
 
     private fun setListeners(){
@@ -55,7 +57,15 @@ class MainFragment: BaseFragment() {
             GenericAdapter.OnListItemViewClickListener {
             override fun onClick(view: View, position: Int) {
                 pokemonAdapter.getItem(position)?.let { pokemon ->
-                    Toast.makeText(requireContext(), "${pokemon.name}", Toast.LENGTH_LONG).show()
+                    when(view.id){
+                        R.id.ivRemove -> {
+                            setTitle(pokemon.name)
+                        }
+                        else -> {
+                            _viewModel.remove(pokemon)
+                            loadPokemonData()
+                        }
+                    }
                 }
             }
         })

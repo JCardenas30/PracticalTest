@@ -21,4 +21,10 @@ class PokemonUseCase {
             }
         }
     }
+
+    fun remove(item: Pokemon){
+        runBlocking {
+            repository.remove(item)
+        }
+    }
 }

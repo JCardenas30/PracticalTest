@@ -15,5 +15,9 @@
     <dimen name="login_header_image_width">0.5</dimen>
 
     <dimen name="main_pokemon_name_size">20sp</dimen>
+    <dimen name="main_pokemon_description_size">16sp</dimen>
+
+    <dimen name="item_recycler_image_height">24dp</dimen>
+    <dimen name="item_recycler_image_width">24dp</dimen>
 
 </resources>

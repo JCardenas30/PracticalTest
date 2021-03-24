@@ -18,4 +18,7 @@
     <string name="main_logout_msg_dialog">You will have to enter your access data again</string>
     <string name="main_logout_yes_dialog">Yes</string>
     <string name="main_logout_no_dialog">No</string>
+
+    <string name="lorem_sample_title">Title</string>
+    <string name="lorem_sample_description">Lorem Ipsum is simply dummy text of the printing and typesetting industry, to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
 </resources>

@@ -8,5 +8,6 @@ import com.sunwise.practicaltest.view.utils.ListItemViewModel
 class Pokemon(
         @PrimaryKey(autoGenerate = true) val id: Int = 0,
         val name: String = "",
-        val url: String = ""
+        val url: String = "",
+        var nameToShow: String = ""
 ): ListItemViewModel()

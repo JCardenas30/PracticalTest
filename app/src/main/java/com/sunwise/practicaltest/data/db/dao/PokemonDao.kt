@@ -1,9 +1,6 @@
 package com.sunwise.practicaltest.data.db.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.sunwise.practicaltest.domain.models.Pokemon
 
 @Dao
@@ -20,4 +17,7 @@ interface PokemonDao {
         SELECT COUNT(*) FROM Pokemon
     """)
     suspend fun exist(): Int
+
+    @Delete
+    suspend fun remove(item: Pokemon)
 }

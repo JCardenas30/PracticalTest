@@ -13,6 +13,12 @@ class UserRepository: BaseRepository() {
         }
     }
 
+    fun getSession(result: (user: User?) -> Unit){
+        runBlocking {
+            result(dao.existSession())
+        }
+    }
+
     fun login(user: User, result: (user: User?) -> Unit) {
         runBlocking {
             result(dao.login(user.email, user.password))

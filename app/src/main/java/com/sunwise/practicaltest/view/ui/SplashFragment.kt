@@ -1,6 +1,7 @@
 package com.sunwise.practicaltest.view.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -51,7 +52,13 @@ class SplashFragment: BaseFragment() {
     }
 
     private fun goTo(action: Int) {
-        object: Thread() {
+        Handler().postDelayed({
+            val args = if(action == R.id.action_splashFragment_to_mainFragment)
+                bundleOf(BaseFragment.HAS_TOOLBAR_KEY to true)
+            else Bundle.EMPTY
+            _navController?.navigate(action, args)
+        }, 500)
+        /*object: Thread() {
             override fun run() {
                 try {
                     sleep(500)
@@ -64,6 +71,6 @@ class SplashFragment: BaseFragment() {
                     _navController?.navigate(action, args)
                 }
             }
-        }.start()
+        }.start()*/
     }
 }
